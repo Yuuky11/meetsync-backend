@@ -10,6 +10,7 @@ use App\Services\Contracts\OrganizationServiceInterface;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Contracts\OrganizationMemberRepositoryInterface;
 
+
 class OrganizationService implements OrganizationServiceInterface
 {
     public function __construct(
@@ -74,5 +75,15 @@ class OrganizationService implements OrganizationServiceInterface
 
         ], 500);
     }
+}
+            public function index()
+{
+    $organizations = $this->organizationRepository
+        ->getByIdentity(Auth::id());
+
+    return response()->json([
+        'success' => true,
+        'data' => $organizations,
+    ]);
 }
 }

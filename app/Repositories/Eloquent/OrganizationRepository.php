@@ -22,4 +22,14 @@ class OrganizationRepository implements OrganizationRepositoryInterface
         return Organization::query()
             ->firstWhere('slug', $slug);
     }
+
+    public function getByIdentity(string $identityId)
+{
+    return Organization::query()
+        ->whereHas('members', function ($query) use ($identityId) {
+            $query->where('identity_id', $identityId);
+        })
+        ->with('members')
+        ->get();
+}
 }

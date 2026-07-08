@@ -17,4 +17,9 @@ class OrganizationController extends Controller
     {
         return $this->organizationService->create($request);
     }
+
+    public function index()
+{
+    return $this->organizationService->index();
+}
 }

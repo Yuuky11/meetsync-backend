@@ -11,4 +11,6 @@ interface OrganizationRepositoryInterface
     public function findById(string $id): ?Organization;
 
     public function findBySlug(string $slug): ?Organization;
+
+    public function getByIdentity(string $identityId);
 }
