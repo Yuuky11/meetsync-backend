@@ -46,4 +46,9 @@ class Identity extends Authenticatable
     {
         return $this->hasMany(LoginSession::class);
     }
+
+    public function organizations()
+{
+    return $this->hasMany(Organization::class, 'owner_identity_id');
+}
 }

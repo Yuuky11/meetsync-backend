@@ -4,6 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Repositories\Contracts\OrganizationRepositoryInterface;
+use App\Repositories\Eloquent\OrganizationRepository;
+
+use App\Services\Contracts\OrganizationServiceInterface;
+use App\Services\OrganizationService;
+
 use App\Services\AuthService;
 use App\Services\Contracts\AuthServiceInterface;
 use App\Repositories\Contracts\IdentityRepositoryInterface;
@@ -27,6 +33,15 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
     AuthServiceInterface::class,
     AuthService::class
+);
+        $this->app->bind(
+    OrganizationRepositoryInterface::class,
+    OrganizationRepository::class
+);
+
+$this->app->bind(
+    OrganizationServiceInterface::class,
+    OrganizationService::class
 );
 
         $this->app->bind(
