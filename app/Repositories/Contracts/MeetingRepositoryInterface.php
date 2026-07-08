@@ -11,4 +11,8 @@ interface MeetingRepositoryInterface
     public function findById(string $id): ?Meeting;
 
     public function getByOrganization(string $organizationId);
+
+    public function updateStatus(string $id, string $status);
+
+    public function findPublishedById(string $id): ?Meeting;
 }

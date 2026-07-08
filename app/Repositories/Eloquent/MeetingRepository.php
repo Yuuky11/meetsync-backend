@@ -23,4 +23,22 @@ class MeetingRepository implements MeetingRepositoryInterface
             ->where('organization_id', $organizationId)
             ->get();
     }
+
+    public function updateStatus(string $id, string $status)
+{
+    $meeting = Meeting::query()->findOrFail($id);
+
+    $meeting->update([
+        'status' => $status,
+    ]);
+
+    return $meeting;
+}
+
+            public function findPublishedById(string $id): ?Meeting
+{
+    return Meeting::query()
+        ->where('status', 'PUBLISHED')
+        ->find($id);
+}
 }

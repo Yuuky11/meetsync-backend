@@ -60,4 +60,9 @@ class Identity extends Authenticatable
 {
     return $this->hasMany(Meeting::class, 'created_by');
 }
+
+public function meetingParticipants()
+{
+    return $this->hasMany(MeetingParticipant::class);
+}
 }

@@ -38,4 +38,14 @@ class Meeting extends Model
     {
         return $this->belongsTo(Identity::class, 'created_by');
     }
+
+    public function participants()
+{
+    return $this->hasMany(MeetingParticipant::class);
+}
+
+public function qrToken()
+{
+    return $this->hasOne(MeetingQrToken::class);
+}
 }

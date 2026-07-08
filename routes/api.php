@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\MeetingController;
+use App\Http\Controllers\Api\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,15 @@ Route::middleware('auth:sanctum')->group(function () {
     // Organization
     Route::post('/organizations', [OrganizationController::class, 'store']);
     Route::get('/organizations', [OrganizationController::class, 'index']);
+    Route::post('/organizations/members', [OrganizationController::class, 'addMembers']);
 
     // Meeting
     Route::post('/meetings', [MeetingController::class, 'store']);
+    Route::post('/meetings/participants', [MeetingController::class, 'addParticipants']);
+    Route::patch('/meetings/{meetingId}/publish', [MeetingController::class, 'publish']);
+    Route::get('/meetings/{meetingId}/qr', [MeetingController::class, 'qr']);
+
+    // Attendance
+    Route::post('/attendance/check-in', [AttendanceController::class, 'checkIn']);
 
 });

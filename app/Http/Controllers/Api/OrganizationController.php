@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrganizationRequest;
 use App\Services\Contracts\OrganizationServiceInterface;
+use App\Http\Requests\AddOrganizationMemberRequest;
 
 class OrganizationController extends Controller
 {
@@ -21,5 +22,9 @@ class OrganizationController extends Controller
     public function index()
 {
     return $this->organizationService->index();
+}
+    public function addMembers(AddOrganizationMemberRequest $request)
+{
+    return $this->organizationService->addMembers($request);
 }
 }

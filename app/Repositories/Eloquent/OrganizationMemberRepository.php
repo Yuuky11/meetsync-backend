@@ -19,4 +19,19 @@ class OrganizationMemberRepository implements OrganizationMemberRepositoryInterf
         ->where('identity_id', $identityId)
         ->first();
 }
+                public function findByIdentity(string $organizationId, string $identityId)
+{
+    return OrganizationMember::query()
+        ->where('organization_id', $organizationId)
+        ->where('identity_id', $identityId)
+        ->first();
+}
+
+            public function exists(string $organizationId, string $identityId): bool
+{
+    return OrganizationMember::query()
+        ->where('organization_id', $organizationId)
+        ->where('identity_id', $identityId)
+        ->exists();
+}
 }
