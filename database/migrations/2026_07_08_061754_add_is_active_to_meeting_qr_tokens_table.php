@@ -6,23 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('meeting_qr_tokens', function (Blueprint $table) {
-            //
+
+            $table->boolean('is_active')
+                ->default(true)
+                ->after('token');
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('meeting_qr_tokens', function (Blueprint $table) {
-            //
+
+            $table->dropColumn('is_active');
+
         });
     }
 };
