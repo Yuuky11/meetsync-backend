@@ -13,6 +13,12 @@ use App\Repositories\Eloquent\OrganizationMemberRepository;
 use App\Services\Contracts\OrganizationServiceInterface;
 use App\Services\OrganizationService;
 
+use App\Services\Contracts\MeetingServiceInterface;
+use App\Services\MeetingService;
+
+use App\Repositories\Contracts\MeetingRepositoryInterface;
+use App\Repositories\Eloquent\MeetingRepository;
+
 use App\Services\AuthService;
 use App\Services\Contracts\AuthServiceInterface;
 use App\Repositories\Contracts\IdentityRepositoryInterface;
@@ -32,6 +38,16 @@ class AppServiceProvider extends ServiceProvider
             IdentityRepositoryInterface::class,
             IdentityRepository::class
         );
+
+        $this->app->bind(
+    MeetingServiceInterface::class,
+    MeetingService::class
+);
+
+        $this->app->bind(
+    MeetingRepositoryInterface::class,
+    MeetingRepository::class
+);
 
         $this->app->bind(
     OrganizationMemberRepositoryInterface::class,

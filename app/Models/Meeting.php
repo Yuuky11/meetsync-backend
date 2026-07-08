@@ -6,22 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Organization extends Model
+class Meeting extends Model
 {
     use HasUuids, SoftDeletes;
 
-    protected $table = 'organizations';
+    protected $table = 'meetings';
 
     protected $fillable = [
-        'owner_identity_id',
-        'name',
-        'slug',
+        'organization_id',
+        'created_by',
+        'title',
         'description',
-        'logo_url',
+        'meeting_type',
+        'start_at',
+        'end_at',
         'status',
     ];
-
-    protected $hidden = [];
 
     /*
     |--------------------------------------------------------------------------
@@ -29,17 +29,13 @@ class Organization extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function owner()
+    public function organization()
     {
-        return $this->belongsTo(Identity::class, 'owner_identity_id');
+        return $this->belongsTo(Organization::class);
     }
 
-    public function members()
-{
-    return $this->hasMany(OrganizationMember::class);
-}
-            public function meetings()
-{
-    return $this->hasMany(Meeting::class);
-}
+    public function creator()
+    {
+        return $this->belongsTo(Identity::class, 'created_by');
+    }
 }

@@ -11,4 +11,12 @@ class OrganizationMemberRepository implements OrganizationMemberRepositoryInterf
     {
         return OrganizationMember::create($data);
     }
+
+    public function findMember(string $organizationId, string $identityId)
+{
+    return OrganizationMember::query()
+        ->where('organization_id', $organizationId)
+        ->where('identity_id', $identityId)
+        ->first();
+}
 }
