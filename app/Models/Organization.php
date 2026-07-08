@@ -33,4 +33,9 @@ class Organization extends Model
     {
         return $this->belongsTo(Identity::class, 'owner_identity_id');
     }
+
+    public function members()
+{
+    return $this->hasMany(OrganizationMember::class);
+}
 }

@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\OrganizationRepositoryInterface;
 use App\Repositories\Eloquent\OrganizationRepository;
 
+use App\Repositories\Contracts\OrganizationMemberRepositoryInterface;
+use App\Repositories\Eloquent\OrganizationMemberRepository;
+
 use App\Services\Contracts\OrganizationServiceInterface;
 use App\Services\OrganizationService;
 
@@ -29,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
             IdentityRepositoryInterface::class,
             IdentityRepository::class
         );
+
+        $this->app->bind(
+    OrganizationMemberRepositoryInterface::class,
+    OrganizationMemberRepository::class
+);
 
         $this->app->bind(
     AuthServiceInterface::class,
